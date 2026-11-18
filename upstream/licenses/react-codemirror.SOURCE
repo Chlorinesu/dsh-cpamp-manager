@@ -1,0 +1,2 @@
+https://github.com/uiwjs/react-codemirror/blob/v4.25.12/LICENSE
+Used for @uiw/react-codemirror and @uiw/codemirror-extensions-basic-setup, whose npm packages declare this repository and MIT license but omit the root license file.

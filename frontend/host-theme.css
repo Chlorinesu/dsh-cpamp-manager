@@ -1,0 +1,248 @@
+/* App-local adaptation of the v1.14.10 shell. Load AFTER scopeCss(upstream CSS).
+ * Surfaces and labels inherit Host tokens; accents use a CPAMP-local palette. No Host DOM,
+ * global body, root application, or global scroll container is styled here. */
+.cpamp-admin {
+  --app-bg: var(--dsw-alias-bg-base);
+  --app-bg-gradient: none;
+  --app-bg-blob-1-opacity: 0;
+  --app-bg-blob-2-opacity: 0;
+  --app-surface: var(--dsw-alias-bg-layer-1);
+  --app-surface-strong: var(--dsw-alias-bg-layer-1);
+  --app-surface-muted: var(--dsw-alias-bg-layer-2);
+  --app-border: var(--dsw-alias-border-l1);
+  --app-border-strong: var(--dsw-alias-border-l2);
+  --app-shadow: none;
+  --app-shadow-soft: none;
+  --app-text-primary: var(--dsw-alias-label-primary);
+  --app-text-regular: var(--dsw-alias-label-secondary);
+  --app-text-muted: var(--dsw-alias-label-secondary);
+  --app-accent: var(--dsw-alias-brand-primary);
+  --app-accent-soft: color-mix(in srgb, var(--dsw-alias-brand-primary) 10%, transparent);
+  --surface-subtle: var(--dsw-alias-bg-layer-2);
+  --surface-subtle-hover: color-mix(in srgb, var(--dsw-alias-brand-primary) 8%, transparent);
+  --surface-subtle-strong: var(--dsw-alias-bg-layer-2);
+  --border-subtle: var(--dsw-alias-border-l1);
+  --border-subtle-dashed: var(--dsw-alias-border-l1);
+  --sidebar-bg-color: var(--dsw-alias-bg-layer-1);
+  --sidebar-logo-bg-color: var(--dsw-alias-bg-layer-1);
+  --sidebar-text-color: var(--dsw-alias-label-secondary);
+  --sidebar-active-text-color: var(--dsw-alias-brand-primary);
+  --sidebar-hover-bg-color: color-mix(in srgb, var(--dsw-alias-brand-primary) 10%, transparent);
+  --sidebar-shadow: none;
+  --glass-bg: var(--dsw-alias-bg-layer-1);
+  --glass-bg-secondary: var(--dsw-alias-bg-layer-2);
+  --glass-border: var(--dsw-alias-border-l1);
+  --glass-shadow: none;
+  --glass-backdrop-filter: none;
+  --glass-filter: none;
+  --app-input-bg: var(--dsw-alias-bg-base);
+  --app-input-bg-focus: var(--dsw-alias-bg-base);
+  --app-input-border: var(--dsw-alias-border-l1);
+  --app-input-border-focus: var(--dsw-alias-brand-primary);
+  --bg-primary: var(--dsw-alias-bg-layer-1);
+  --bg-secondary: var(--dsw-alias-bg-base);
+  --bg-tertiary: var(--dsw-alias-bg-layer-2);
+  --bg-hover: var(--dsw-alias-bg-layer-2);
+  --bg-quinary: var(--dsw-alias-bg-layer-2);
+  --bg-error-light: color-mix(in srgb, var(--dsw-alias-state-error-primary) 10%, transparent);
+  --floating-surface: var(--dsw-alias-bg-overlay);
+  --floating-border: var(--dsw-alias-border-l1);
+  --floating-shadow: none;
+  --text-primary: var(--dsw-alias-label-primary);
+  --text-secondary: var(--dsw-alias-label-secondary);
+  --text-tertiary: var(--dsw-alias-label-secondary);
+  --text-quaternary: var(--dsw-alias-state-idle-primary);
+  --text-muted: var(--dsw-alias-label-secondary);
+  --border-color: var(--dsw-alias-border-l1);
+  --border-secondary: var(--dsw-alias-border-l1);
+  --border-primary: var(--dsw-alias-border-l2);
+  --border-hover: var(--dsw-alias-brand-primary);
+  --primary-color: var(--dsw-alias-brand-primary);
+  --primary-hover: var(--cpamp-accent-hover);
+  --primary-active: var(--cpamp-solid-active);
+  --primary-solid: var(--cpamp-solid);
+  --primary-solid-hover: var(--cpamp-solid-hover);
+  --primary-solid-active: var(--cpamp-solid-active);
+  --primary-contrast: var(--cpamp-on-solid);
+  --primary-gradient: var(--cpamp-solid);
+  --primary-soft: color-mix(in srgb, var(--dsw-alias-brand-primary) 16%, transparent);
+  --primary-subtle: color-mix(in srgb, var(--dsw-alias-brand-primary) 8%, transparent);
+  --primary-ring: color-mix(in srgb, var(--dsw-alias-brand-primary) 25%, transparent);
+  --focus-bg: color-mix(in srgb, var(--dsw-alias-brand-primary) 8%, transparent);
+  --focus-border: var(--dsw-alias-brand-primary);
+  --focus-inset: color-mix(in srgb, var(--dsw-alias-brand-primary) 25%, transparent);
+  --focus-text: var(--dsw-alias-brand-primary);
+  --success-color: var(--dsw-alias-state-success-primary);
+  --quota-medium-color: var(--dsw-alias-state-warn-primary);
+  --warning-color: var(--dsw-alias-state-warn-primary);
+  --error-color: var(--dsw-alias-state-error-primary);
+  --danger-color: var(--dsw-alias-state-error-primary);
+  --info-color: var(--dsw-alias-label-secondary);
+  --data-track-bg: var(--dsw-alias-bg-layer-2);
+  --data-health-warn-base: var(--dsw-alias-state-warn-primary);
+  --accent-tertiary: color-mix(in srgb, var(--dsw-alias-brand-primary) 10%, transparent);
+  --shadow: none;
+  --shadow-lg: none;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  /* The upstream body scroll-lock must never move the embedded app root. */
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  isolation: isolate;
+  contain: layout paint style;
+  container-type: size;
+  container-name: cpamp-admin;
+  /* Establish a containing block for portaled upstream fixed dialogs/tooltips. */
+  transform: translateZ(0);
+  font: inherit;
+  line-height: 1.5;
+  color: var(--dsw-alias-label-primary);
+  background: var(--dsw-alias-bg-base);
+  color-scheme: inherit;
+}
+.cpamp-admin *, .cpamp-admin *::before, .cpamp-admin *::after { box-sizing: border-box; }
+.cpamp-admin > .app-content {
+  flex: 1 1 0;
+  width: 100%;
+  min-height: 0;
+  height: 0;
+  overflow: hidden;
+}
+.cpamp-admin .app-background { display: none; }
+/* Preserve pending edits while the connection form is open. */
+.cpamp-admin[data-connection-settings="open"] > .app-content { display: none; }
+/* Appearance is inherited from Harness, not controlled by a second app switch. */
+.cpamp-admin .main-header .theme-menu { display: none; }
+.cpamp-admin .app-shell, .cpamp-admin .main-body {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+.cpamp-admin .main-header { position: absolute; top: 0; }
+.cpamp-admin .sidebar { position: absolute; }
+.cpamp-admin .sidebar-backdrop { position: absolute; }
+.cpamp-admin .content, .cpamp-admin .content.content-logs, .cpamp-admin .content.content-plugin-resource {
+  height: 100%;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.cpamp-admin .content.content-logs, .cpamp-admin .content.content-plugin-resource { overflow: hidden; }
+.cpamp-admin .main-content { min-height: 100%; }
+.cpamp-admin .main-content.main-content-logs, .cpamp-admin .main-content.main-content-plugin-resource {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+/* Connection controls remain in normal flex flow, above the original app shell. */
+.cpamp-admin .cpamp-port-controls {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--dsw-alias-border-l1);
+  color: var(--dsw-alias-label-secondary);
+  background: var(--dsw-alias-bg-layer-1);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.cpamp-admin .cpamp-port-controls > span { flex: 1 1 240px; min-width: 0; }
+.cpamp-admin .cpamp-palette-picker { display: inline-flex; align-items: center; gap: 6px; flex: 0 0 auto; white-space: nowrap; }
+.cpamp-admin .cpamp-palette-picker select { padding: 6px 8px; max-width: 180px; border: 1px solid var(--dsw-alias-border-l2); border-radius: 8px; background: var(--dsw-alias-bg-layer-1); color: var(--dsw-alias-label-primary); font: inherit; cursor: pointer; }
+.cpamp-admin .cpamp-port-controls > button, .cpamp-admin .cpamp-port-controls > a { flex: 0 0 auto; }
+.cpamp-admin .cpamp-port-controls button, .cpamp-admin .cpamp-port-controls a,
+.cpamp-admin .cpamp-connection-settings button, .cpamp-admin > button {
+  appearance: none;
+  padding: 7px 11px;
+  border: 1px solid var(--dsw-alias-border-l1);
+  border-radius: 8px;
+  background: var(--dsw-alias-bg-base);
+  color: var(--dsw-alias-label-primary);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cpamp-admin .cpamp-port-controls button:disabled, .cpamp-admin .cpamp-connection-settings button:disabled { opacity: .55; cursor: not-allowed; }
+.cpamp-admin .cpamp-port-controls :focus-visible, .cpamp-admin .cpamp-connection-settings :focus-visible {
+  outline: 2px solid var(--dsw-alias-brand-primary);
+  outline-offset: 2px;
+}
+.cpamp-admin .cpamp-connection-settings {
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: calc(100% - 64px);
+  overflow: auto;
+  margin: 24px;
+  padding: 24px;
+  border: 1px solid var(--dsw-alias-border-l1);
+  border-radius: 12px;
+  background: var(--dsw-alias-bg-layer-1);
+}
+.cpamp-admin .cpamp-connection-settings h2 { margin: 0 0 12px; font-size: 20px; font-weight: 600; }
+.cpamp-admin .cpamp-connection-settings p { margin: 8px 0; color: var(--dsw-alias-label-secondary); }
+.cpamp-admin .cpamp-connection-settings label { display: block; margin: 16px 0; color: var(--dsw-alias-label-primary); }
+.cpamp-admin .cpamp-connection-settings input {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  padding: 9px 12px;
+  margin-top: 6px;
+  border: 1px solid var(--dsw-alias-border-l1);
+  border-radius: 8px;
+  background: var(--dsw-alias-bg-base);
+  color: var(--dsw-alias-label-primary);
+  font: inherit;
+}
+.cpamp-admin .cpamp-connection-settings button { margin: 4px 8px 4px 0; }
+.cpamp-admin .cpamp-adapter-error, .cpamp-admin .cpamp-adapter-notice {
+  flex: 0 1 auto;
+  max-height: 30%;
+  overflow: auto;
+  margin: 10px 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--dsw-alias-border-l1);
+  border-radius: 8px;
+  background: var(--dsw-alias-bg-layer-2);
+  overflow-wrap: anywhere;
+}
+.cpamp-admin .cpamp-adapter-error { color: var(--dsw-alias-state-error-primary); }
+.cpamp-admin > p { margin: 12px 24px; color: var(--dsw-alias-label-secondary); }
+@container cpamp-admin (max-width: 768px) {
+  .cpamp-admin .app-shell { --sidebar-active-width: 0px; --sidebar-panel-width: min(280px, calc(100cqw - 24px)); }
+  .cpamp-admin .main-header { left: 0; }
+  .cpamp-admin .sidebar { top: var(--header-height); bottom: 0; height: calc(100% - var(--header-height)); width: var(--sidebar-panel-width); transform: translateX(calc(-100% - 24px)); }
+  .cpamp-admin .sidebar.open { transform: translateX(0); }
+  .cpamp-admin .sidebar.collapsed { width: var(--sidebar-panel-width); }
+  .cpamp-admin .sidebar.collapsed .sidebar-brand { padding: 0 18px; }
+  .cpamp-admin .sidebar.collapsed .nav-item { justify-content: flex-start; padding: 0 22px; }
+  .cpamp-admin .sidebar-backdrop { display: block; inset: 0; }
+  .cpamp-admin .content { margin-left: 0; }
+  .cpamp-admin .navbar-right { padding-right: 8px; gap: 2px; }
+  .cpamp-admin .app-breadcrumb { margin-left: 0; }
+  .cpamp-admin .main-content { padding-left: 12px; padding-right: 12px; }
+  .cpamp-admin .cpamp-port-controls { flex-wrap: wrap; padding: 8px 12px; }
+  .cpamp-admin .cpamp-port-controls > span { flex-basis: 100%; }
+  .cpamp-admin .cpamp-connection-settings { margin: 12px; padding: 16px; }
+}
+@media (hover: hover) {
+  .cpamp-admin .cpamp-port-controls button:not(:disabled):hover,
+  .cpamp-admin .cpamp-port-controls a:hover,
+  .cpamp-admin .cpamp-connection-settings button:not(:disabled):hover { background: var(--dsw-alias-bg-layer-2); }
+}
+@media (pointer: coarse) {
+  .cpamp-admin input, .cpamp-admin select, .cpamp-admin textarea { font-size: max(16px, 1em); }
+}

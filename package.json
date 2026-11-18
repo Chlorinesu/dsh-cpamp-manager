@@ -1,0 +1,60 @@
+{
+  "name": "dsh-cpamp-manager",
+  "version": "0.1.0-beta.1",
+  "description": "Unofficial native CPAMP management integration for DeepSeek Harness (beta).",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "dsh": ">=0.2.2-rc.3 <0.3.0"
+  },
+  "exports": {
+    ".": "./admin.js",
+    "./client": "./dist/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "admin.js",
+    "admin-bridge.js",
+    "admin-policy.js",
+    "index.js",
+    "monitor.js",
+    "dist/client.js",
+    "dist/build-report.json",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "upstream/LICENSE",
+    "upstream/VERSION",
+    "upstream/DEPENDENCY_LICENSES.txt",
+    "upstream/licenses/*"
+  ],
+  "scripts": {
+    "build": "node build-tools/build.mjs",
+    "test": "node --test --test-isolation=none test/*.test.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "cpamp",
+    "cliproxyapi",
+    "usage-monitoring"
+  ]
+}

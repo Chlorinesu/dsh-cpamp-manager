@@ -1,0 +1,4 @@
+- insert:
+    - id: cpamp-monitor
+      name: 'dsh-cpamp-manager'
+      config: {}

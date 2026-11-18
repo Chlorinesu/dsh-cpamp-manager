@@ -1,0 +1,2 @@
+# Preserve vendored source bytes so the pinned source hash manifest is portable.
+* -text

@@ -1,0 +1,6 @@
+CPA-Manager-Plus v1.14.10
+Source: https://github.com/seakee/CPA-Manager-Plus/tree/v1.14.10
+Archive: https://codeload.github.com/seakee/CPA-Manager-Plus/zip/refs/tags/v1.14.10
+Archive SHA256: 9eb1b0d6c053face9ad5cd749f76718f385d5105369297c87c5f631a384c0ebd
+License: MIT, Copyright (c) 2026 Seakee (see LICENSE in this directory)
+The upstream source in src is kept unchanged. Harness adaptations live in frontend and build-tools.
